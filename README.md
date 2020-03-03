@@ -1,2 +1,3 @@
-# recipe-app-api
-Recipe app api soruce code
+# recipe app
+
+deneme bir uygulamadır.
