@@ -32,3 +32,10 @@ class CreateListRetrieveViewSet(mixins.CreateModelMixin,
                                 mixins.ListModelMixin,
                                 mixins.RetrieveModelMixin,
                                 viewsets.GenericViewSet):
+
+> Bu şekilde viewsete mixins verildiğinde diğer otomatik verilmiş mixinler iptal edilir. 
+
+
+## perform_crate
+
+CreateModelMixin in sahip olduğu yetenek. Kaydedilirken bir relational varsa bunu kullanabiliriz gibime geliyor.
