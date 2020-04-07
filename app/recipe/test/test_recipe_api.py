@@ -21,7 +21,7 @@ def sample_recipe(user, **params):
         'price': 5.00
     }
     defaults.update(params)
-    return Recipe.objects.create(user, **defaults)
+    return Recipe.objects.create(user=user, **defaults)
 
 
 class PublicRecipeApiTest(TestCase):
@@ -35,7 +35,8 @@ class PublicRecipeApiTest(TestCase):
         res = self.client.get(RECIPES_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
-    
+
+
 class PrivateRecipeApiTests(TestCase):
     """Test authroized recipe API access"""
 
