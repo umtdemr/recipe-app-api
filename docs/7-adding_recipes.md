@@ -13,6 +13,8 @@ recipedetailserializer oluşturup recipeserializer dan miras alma yapılır
 
 > getattr
 
+> primary field id döndürür. Eğer değerleri döndürmek istiyorsak ingredients = IngredientSerializer kullanmalı
+
 ```py
 # serializers.py
 
