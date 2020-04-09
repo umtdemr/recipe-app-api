@@ -59,3 +59,36 @@ def recipe_image_file_path(instance, filename):
 
 image = models.ImageField(null=True, upload_to=recipe_image_file_path)
 ```
+
+### Test
+
+tearDown: image.delete
+```py
+from PIL import Image
+import os
+import tempfile
+#...
+
+```
+
+### Serializers
+
+bu baya basit
+
+```py
+class RecipeImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Recipe
+        fields = ('id', 'image')
+        read_only_fields = ('id',)
+```
+
+### Viewset değiştirmesi:
+
+```py
+from rest_framework.decorators import action
+from rest_framework.response import Response
+from rest_framework import status
+#...
+```
