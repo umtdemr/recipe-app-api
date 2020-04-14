@@ -50,3 +50,29 @@ def test_filter_recipes_by_ingredients(self):
     self.assertIn(serializer2.data, res.data)
     self.assertNotIn(serializer3.data, res.data)
 ```
+
+
+## Viewset eklemesi
+
+recipe viewset e bir adet func ekleyelim ve get_queryset func içinde de belli bir filtreleme yapalım
+
+```py
+
+def _params_to_ints(self, qs): # why func starts with _? the reason is its mean private (not in real)
+    """Conert a list of string IDs to list of intengers"""
+    return [int(str_id) for str_id in qs.split(',')]
+
+
+def get_queryset(self):
+    """Retrieve the recipes for the authenticated user"""
+    tags = self.request.query_params.get('tags')
+    ingredients = self.request.query_params.get('ingredients')
+    queryset = self.queryset 
+    if tags:
+        tags_ids = self._params_to_ints(tags)
+        queryset = queryset.filter(tags__id__in=tags_ids)
+    if ingredients:
+        ingredients_ids = self._params_to_ints(ingredients)
+        queryset = queryset.filter(ingredients__id__in=ingredients_ids)
+    return queryset.filter(user=self.request.user)
+```
